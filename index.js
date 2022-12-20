@@ -26,7 +26,7 @@ bot.on('message', async (msg) => {
                 inline_keyboard: [
                     [{text: 'Выбрать движ', web_app: {url: webAppUrl}}],
                     [{text: 'Полезная информация', web_app: {url: main}}],
-                    // [{text: 'Router sandbox', web_app: {url: webAppUrl + 'faq'}}],
+                    [{text: 'Items sandbox', web_app: {url: webAppUrl + 'items'}}],
                     [{text: 'Форма', web_app: {url: webAppUrl + 'form'}}],
                 ]
             }
