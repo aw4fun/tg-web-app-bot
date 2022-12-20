@@ -91,36 +91,24 @@ bot.on('message', async (msg) => {
 });
 
 
+
 app.post('/web-data', async (req, res) => {
-    const { queryId, bet_data } = req.body;
-
-    console.log('triggered!');
-
+    const {queryId, products = [], totalPrice} = req.body;
     try {
-
         await bot.answerWebAppQuery(queryId, {
             type: 'article',
             id: queryId,
-            title: 'Success payment',
-            input_message_content: {message_text: 'SUccesssed pay, congratulation !!!' + bet_data}
+            title: 'Успешная покупка',
+            input_message_content: {
+                message_text: ` Поздравляю с покупкой, вы приобрели товар на сумму ${totalPrice}, ${products.map(item => item.title).join(', ')}`
+            }
         })
-
         return res.status(200).json({});
-
     } catch (e) {
-        await bot.answerWebAppQuery(queryId, {
-            type: 'article',
-            id: queryId,
-            title:  'Failed pay, congratulation !!!',
-            input_message_content: {message_text: 'Failed pay, congratulation !!!'}
-        })
-        return res.status(500).json({});
+        return res.status(500).json({})
     }
-
 })
 
 const PORT = 8000;
 
-app.listen(PORT, () => {
-    console.log('server started on port: ' + PORT);
-})
+app.listen(PORT, () => console.log('server started on PORT ' + PORT))
