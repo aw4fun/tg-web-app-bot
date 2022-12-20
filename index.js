@@ -33,15 +33,15 @@ bot.on('message', async (msg) => {
         });
 
         // send a message to the chat acknowledging receipt of their message
-        await bot.sendMessage(chatId, 'Ниже появится кнопка, заполни форму', {
-            reply_markup: {
-                keyboard: [
-                    [{text: 'Выбрать движ', web_app: {url: webAppUrl}}],
-
-                    [{text: 'Заполнить форму', web_app: {url: webAppUrl + 'form'}}]
-                ]
-            }
-        });
+        // await bot.sendMessage(chatId, 'Ниже появится кнопка, заполни форму', {
+        //     reply_markup: {
+        //         keyboard: [
+        //             [{text: 'Выбрать движ', web_app: {url: webAppUrl}}],
+        //
+        //             [{text: 'Заполнить форму', web_app: {url: webAppUrl + 'form'}}]
+        //         ]
+        //     }
+        // });
 
     }
 
@@ -93,15 +93,15 @@ bot.on('message', async (msg) => {
 
 
 app.post('/web-data', async (req, res) => {
-    const {queryId, products = [], totalPrice} = req.body;
+    const {queryId} = req.body;
     try {
         await bot.answerWebAppQuery(queryId, {
             type: 'article',
             id: queryId,
             title: 'Успешная покупка',
-            // input_message_content: {
-            //     message_text: ` Поздравляю с покупкой, вы приобрели товар на сумму ${totalPrice}, ${products.map(item => item.title).join(', ')}`
-            // }
+            input_message_content: {
+                message_text: ` Поздравляю с покупкой, вы приобрели товар на сумму`
+            }
         })
         return res.status(200).json(req.body);
     } catch (e) {
