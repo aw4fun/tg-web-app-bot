@@ -93,7 +93,7 @@ bot.on('message', async (msg) => {
 
 
 app.post('/web-data', async (req, res) => {
-    const {queryId, products} = req.body;
+    const {queryId, bet_data} = req.body;
     try {
         await bot.answerWebAppQuery(queryId, {
             type: 'article',
@@ -101,7 +101,7 @@ app.post('/web-data', async (req, res) => {
             title: 'Успешная покупка',
             message_text: ` Поздравляю с покупкой, вы приобрели товар на сумму`,
             input_message_content: {
-                message_text: ` Поздравляю с покупкой, вы приобрели товар на сумму23  ${products.length}`
+                message_text: ` Поздравляю с покупкой, вы приобрели товар на сумму23  ${bet_data.coupons.length}`
             }
         })
         return res.status(200).json(req.body);
