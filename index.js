@@ -117,12 +117,11 @@ app.post('/web-products', async (req, res) => {
             type: 'article',
             id: queryId,
             title: 'Успешная покупка',
-            message_text: `Required field`,
             input_message_content: {
                 message_text: ` Поздравляю с покупкой, вы приобрели товар на сумму`
             }
         })
-        return res.status(200).json({});
+        return res.status(200).json(req.body);
     } catch (e) {
         return res.status(500).json({error: e.message})
     }
