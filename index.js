@@ -99,7 +99,7 @@ app.post('/web-data', async (req, res) => {
             type: 'article',
             id: queryId,
             title: 'Успешная покупка',
-            message_text: ` Поздравляю с покупкой, вы приобрели товар на сумму ${bet_data?.products.length}`,
+            message_text: ` Поздравляю с покупкой, вы приобрели товар на сумму ${products.length}`,
             input_message_content: {
                 message_text: ` Поздравляю с покупкой, вы приобрели товар на сумму`
             }
