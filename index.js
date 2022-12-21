@@ -101,7 +101,7 @@ app.post('/web-data', async (req, res) => {
             title: 'Успешная покупка',
             message_text: ` Поздравляю с покупкой, вы приобрели товар на сумму ${products.length}`,
             input_message_content: {
-                message_text: ` Поздравляю с покупкой, вы приобрели товар на сумму`
+                message_text: ` Поздравляю с покупкой, вы приобрели товар на сумму23`
             }
         })
         return res.status(200).json(req.body);
