@@ -124,7 +124,7 @@ app.post('/web-products', async (req, res) => {
         })
         return res.status(200).json({});
     } catch (e) {
-        return res.status(500).json({e})
+        return res.status(500).json(e.message)
     }
 })
 
