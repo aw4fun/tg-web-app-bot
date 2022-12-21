@@ -14,7 +14,7 @@ const bot = new TelegramBot(token, {polling: true});
 
 const app = express();
 app.use(express.json());
-// app.use(cors());
+app.use(cors());
 
 bot.on('message', async (msg) => {
     const chatId = msg.chat.id;
@@ -95,13 +95,16 @@ bot.on('message', async (msg) => {
 app.post('/web-data', async (req, res) => {
     const {queryId, bet_data} = req.body;
     try {
+        const tmpString = JSON.stringify(bet_data);
+
+
         await bot.answerWebAppQuery(queryId, {
             type: 'article',
             id: queryId,
             title: 'Успешная покупка',
             message_text: ` Поздравляю с покупкой, вы приобрели товар на сумму`,
             input_message_content: {
-                message_text: ` Поздравляю с покупкой, вы приобрели товар на сумму23  ${JSON.stringify(bet_data)}`
+                message_text: `Длина строки:${tmpString.length}=>${tmpString}`
             }
         })
         return res.status(200).json(req.body);
